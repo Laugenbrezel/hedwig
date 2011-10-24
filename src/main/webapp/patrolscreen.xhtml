@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h1>JBoss AS 7 on Patrol!</h1>
+
+		<h:form>
+			<a4j:commandButton action="patrolscreen" value="Refresh"
+				render="targetPanel" styleClass="btn"/>
+			<h:outputText value="&#32;"/>
+			<h:commandButton action="#{patrolBean.startPatrolling}"
+				value="Patrol!" styleClass="btn"/>
+		</h:form>
+
+		<a4j:outputPanel id="targetPanel" layout="block">
+			<h:form>
+				<a4j:region id="titleRegion">
+					<h2>#{empty patrolHome.selectedTarget ? 'Patrol Status' :
+						'Patrol Detail'}</h2>
+				</a4j:region>
+
+				<h:panelGroup rendered="#{empty targets}">
+					<em>No Targets configured :(</em>
+				</h:panelGroup>
+				<a4j:outputPanel layout="block">
+					<table class="nice_box" style="display: none;">
+						<ui:repeat var="_target" value="#{targets}">
+							<tr class="nice_box">
+								<td class="nice_box #{_target.status}">#{_target.name} 
+									<h:commandButton
+										action="#{targetHome.find(_target.id)}" value="select" styleClass="btn small">
+									</h:commandButton></td>
+							</tr>
+						</ui:repeat>
+					</table>
+					<rich:jQuery timing="domready" selector="#targetPanel table"
+						query="fadeIn('slow')" />
+				</a4j:outputPanel>
+				<a4j:outputPanel layout="block"
+					rendered="#{not empty patrolHome.selectedTarget}">
+
+				</a4j:outputPanel>
+			</h:form>
+		</a4j:outputPanel>
+	</ui:define>
+</ui:composition>

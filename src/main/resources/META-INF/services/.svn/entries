@@ -1,0 +1,35 @@
+10
+
+dir
+0
+http://tipptronic.net/svn/hedwig/trunk/src/main/resources/META-INF/services
+http://tipptronic.net/svn/hedwig
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+40ae0ec1-3218-4aa1-8887-7a2187d81734
+
+javax.enterprise.inject.spi.Extension
+file
+
+
+
+add
+

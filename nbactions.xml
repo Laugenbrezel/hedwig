@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>test</actionName>
+            <goals>
+                <goal>test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>arq-jbossas-remote</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>test.single</actionName>
+            <goals>
+                <goal>test-compile</goal>
+                <goal>surefire:test</goal>
+            </goals>
+            <properties>
+                <test>${className}</test>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>arq-jbossas-remote</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>debug.test.single</actionName>
+            <goals>
+                <goal>test-compile</goal>
+                <goal>surefire:test</goal>
+            </goals>
+            <properties>
+                <jpda.listen>true</jpda.listen>
+                <maven.surefire.debug>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</maven.surefire.debug>
+                <jpda.stopclass>${packageClassName}</jpda.stopclass>
+                <forkMode>once</forkMode>
+                <test>${className}</test>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>arq-jbossas-remote</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

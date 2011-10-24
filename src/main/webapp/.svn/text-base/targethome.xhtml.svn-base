@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="targetForm">
+			<h2>Create a new Target</h2>
+			<p>Input will be checked when ready...</p>
+			<table>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="name"
+							value="Name:" /></th>
+					<td><h:inputText id="name" value="#{newTarget.name}" /> <h:message
+							for="name" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="objectName"
+							value="ObjectName:" /></th>
+					<td><h:inputText id="objectName"
+							value="#{newTarget.objectName}" /> <h:message for="objectName"
+							errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="host"
+							value="Host:" /></th>
+					<td><h:inputText id="host" value="#{newTarget.host}" /> <h:message
+							for="host" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="port"
+							value="Port:" /></th>
+					<td><h:inputText id="port" value="#{newTarget.port}" /> <h:message
+							for="port" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel
+							for="registryName" value="RegistryName:" /></th>
+					<td><h:inputText id="registryName"
+							value="#{newTarget.registryName}" /> <h:message
+							for="registryName" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel
+							for="accessMethod" value="AccessMethod #:" /></th>
+					<td><h:inputText id="accessMethod"
+							value="#{newTarget.accessMethod}" /> <h:message
+							for="accessMethod" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel
+							for="accessProperty" value="AccessProperty #:" /></th>
+					<td><h:inputText id="accessProperty"
+							value="#{newTarget.accessProperty}" /> <h:message
+							for="accessProperty" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="status"
+							value="Status:" /></th>
+					<td><h:outputText id="status" value="#{newTarget.status}" />
+						<a4j:status>
+							<f:facet name="start">
+								<h:graphicImage value="/resources/gfx/ajax_small.gif"
+									alt="kringel" />
+							</f:facet>
+						</a4j:status></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton id="save" action="#{targetHome.save}" value="Save" />
+				<a4j:commandButton action="#{targetHome.check}"
+					value="Check" render="status" execute="@form" />
+				<h:outputText value=" Saved!"
+					rendered="#{facesContext.postback and empty facesContext.messageList}"
+					style="color: green;" />
+			</p>
+		</h:form>
+	</ui:define>
+</ui:composition>

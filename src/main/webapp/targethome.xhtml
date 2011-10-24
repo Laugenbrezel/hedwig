@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="targetForm">
+			<h2>Create a new Target</h2>
+			<p>
+				<h:messages globalOnly="true" />
+			</p>
+			<fieldset>
+				<h:panelGroup styleClass="#{name.valid ? '' : 'error'} clearfix"
+					layout="block">
+					<h:outputLabel for="name" value="Name:" />
+					<div class="input">
+						<h:inputText id="name" value="#{newTarget.name}" binding="#{name}" />
+						<h:message for="name" styleClass="help-inline" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup
+					styleClass="#{objectName.valid ? '' : 'error'} clearfix"
+					layout="block">
+					<h:outputLabel for="objectName" value="ObjectName:" />
+					<div class="input">
+						<h:inputText id="objectName" value="#{newTarget.objectName}"
+							binding="#{objectName}" />
+						<h:message for="objectName" styleClass="help-inline" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup styleClass="#{host.valid ? '' : 'error'} clearfix"
+					layout="block">
+					<h:outputLabel for="host" value="Host:" />
+					<div class="input">
+						<h:inputText id="host" value="#{newTarget.host}" binding="#{host}" />
+						<h:message for="host" styleClass="help-inline" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup styleClass="#{port.valid ? '' : 'error'} clearfix"
+					layout="block">
+					<h:outputLabel for="port" value="Port:" />
+					<div class="input">
+						<h:inputText id="port" value="#{newTarget.port}" binding="#{port}" />
+						<h:message for="port" styleClass="help-inline" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup
+					styleClass="#{registryName.valid ? '' : 'error'} clearfix"
+					layout="block">
+					<h:outputLabel for="registryName" value="RegistryName:" />
+					<div class="input">
+						<h:inputText id="registryName" value="#{newTarget.registryName}"
+							binding="#{registryName}" />
+						<h:message for="registryName" styleClass="help-inline" />
+					</div>
+				</h:panelGroup>
+				<hr/>
+				<h:panelGroup
+					styleClass="#{accessMethod.valid ? '' : 'error'} clearfix"
+					layout="block">
+					<h:outputLabel for="accessMethod" value="AccessMethod:" />
+					<div class="input">
+						<h:inputText id="accessMethod" value="#{newTarget.accessMethod}" 
+							binding="#{accessMethod}"/>
+						<h:message for="accessMethod" styleClass="help-inline" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup
+					styleClass="#{accessProperty.valid ? '' : 'error'} clearfix"
+					layout="block">
+						<h:outputLabel for="accessProperty"
+								value="AccessProperty:" />
+						<div class="input">
+							<h:inputText id="accessProperty"
+								value="#{newTarget.accessProperty}" binding="#{accessProperty}"/>
+							<h:message for="accessProperty" styleClass="help-inline" />
+							<span class="help-block"> <strong>Note: </strong> Please
+								provide either Property or Method!
+							</span>
+						</div>
+				</h:panelGroup>
+				<div class="clearfix">
+					<h:outputLabel value="Status:"  for="status"/>
+					<div class="input">
+						<h:inputText id="status" disabled="true" value="#{newTarget.status}" />
+						<a4j:status>
+							<f:facet name="start">
+								<h:graphicImage value="/resources/gfx/ajax_small.gif"
+									alt="kringel" />
+							</f:facet>
+						</a4j:status>
+					</div>					
+				</div>
+				<div class="actions">
+					<h:commandButton id="save" action="#{targetHome.save}" value="Save"
+						styleClass="btn primary" />
+					<h:outputText value="&#32;" />
+					<a4j:commandButton action="#{targetHome.check}" value="Check"
+						render="status" execute="@form" styleClass="btn" />
+				</div>
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

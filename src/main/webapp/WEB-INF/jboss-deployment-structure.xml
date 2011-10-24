@@ -1,0 +1,10 @@
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+            <!--
+            <module name="org.jboss.as.jmx"/>
+            <module name="org.jboss.as.naming"/>
+            -->
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>

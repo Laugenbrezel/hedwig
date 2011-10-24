@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/hedwig/!svn/ver/5/trunk/src/test/java/de/ikano/hedwig/test
+END
+TargetHomeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/hedwig/!svn/ver/2/trunk/src/test/java/de/ikano/hedwig/test/TargetHomeTest.java
+END
+MemberRegistrationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/hedwig/!svn/ver/2/trunk/src/test/java/de/ikano/hedwig/test/MemberRegistrationTest.java
+END
+TestMain.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/hedwig/!svn/ver/2/trunk/src/test/java/de/ikano/hedwig/test/TestMain.java
+END
+PatrolBeanTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/hedwig/!svn/ver/5/trunk/src/test/java/de/ikano/hedwig/test/PatrolBeanTest.java
+END
