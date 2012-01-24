@@ -24,7 +24,9 @@
 		<!-- Specify the JBoss AS directory to be the JBOSS_HOME environment variable -->
 		<jboss.home>${env.JBOSS_HOME}</jboss.home>
 		<!-- RF 4 -->
-		<org.richfaces.bom.version>4.0.0.Final</org.richfaces.bom.version>
+		<org.richfaces.bom.version>4.1.0.Final</org.richfaces.bom.version>
+		<rewrite.version>1.0.0.Alpha11</rewrite.version>
+		<org.jboss.seam.bom.version>3.1.0.Final</org.jboss.seam.bom.version>
 	</properties>
 
 	<repositories>
@@ -37,8 +39,7 @@
 			<url>http://repository.jboss.org/nexus/content/groups/public</url>
 			<!-- These optional flags are designed to speed up your builds by reducing 
 				remote server calls -->
-			<releases>
-			</releases>
+			<releases></releases>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -67,45 +68,58 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>seam-bom</artifactId>
+				<version>${org.jboss.seam.bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-
-		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for 
-			typesafe criteria queries -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>1.1.1.Final</version>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<type>pom</type>
 			<scope>provided</scope>
-			<!-- Excluded because it's provided by the Java EE 6 dependencies -->
-			<exclusions>
-				<exclusion>
-					<groupId>org.hibernate.javax.persistence</groupId>
-					<artifactId>hibernate-jpa-2.0-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- Seam Solder provides convenient, portable CDI extensions such as an 
-			injectable logger -->
-		<dependency>
-			<groupId>org.jboss.seam.solder</groupId>
-			<artifactId>seam-solder</artifactId>
-			<version>3.0.0.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jboss.seam.catch</groupId>
-			<artifactId>seam-catch</artifactId>
-			<version>3.0.0.Final</version>
+			<groupId>org.jboss.seam.persistence</groupId>
+			<artifactId>seam-persistence</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.seam.faces</groupId>
 			<artifactId>seam-faces</artifactId>
-			<version>3.0.2.Final</version>
-			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.international</groupId>
+			<artifactId>seam-international</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.international</groupId>
+			<artifactId>seam-international</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-impl-servlet</artifactId>
+			<version>${rewrite.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-integration-cdi</artifactId>
+			<version>${rewrite.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-integration-faces</artifactId>
+			<version>${rewrite.version}</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.jboss.logging</groupId> <artifactId>jboss-logging</artifactId> 
+			<version></version> </dependency> -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
+			<scope>provided</scope> <version></version> </dependency> -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -126,22 +140,6 @@
 		<dependency>
 			<groupId>org.richfaces.core</groupId>
 			<artifactId>richfaces-core-impl</artifactId>
-		</dependency>
-
-		<!-- JSR-303 (Bean Validation) Implementation -->
-		<!-- Provides portable constraints such as @Email -->
-		<!-- Hibernate Validator is shipped in JBoss AS 7 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.1.0.Final</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- Needed for running tests (you may also use TestNG) -->
@@ -249,7 +247,7 @@
 				<dependency>
 					<groupId>org.jboss.as</groupId>
 					<artifactId>jboss-as-arquillian-container-managed</artifactId>
-					<version>7.0.0.CR1</version>
+					<version>7.0.2.Final</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -270,18 +268,5 @@
 			</dependencies>
 		</profile>
 
-
-
 	</profiles>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<configLocation>config/sun_checks.xml</configLocation>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>

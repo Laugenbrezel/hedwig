@@ -15,7 +15,8 @@
          <property name="executionType">REMOTE</property>
       </protocol>
       <configuration>
-         <property name="jbossHome">/path/to/jboss/as</property>
+         <property name="jbossHome">/Users/lutz/Development/jboss-as-7.0.2.Final</property>
+         <property name="serverConfig">standalone-preview.xml</property>
       </configuration>
    </container>
 

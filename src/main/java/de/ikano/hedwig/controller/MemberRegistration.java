@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import org.jboss.logging.Logger;
-import org.jboss.seam.solder.logging.Category;
+import org.jboss.solder.logging.Logger;
+import org.jboss.solder.logging.Category;
 
 import de.ikano.hedwig.model.Member;
 

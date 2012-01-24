@@ -10,7 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.logging.Logger;
+import org.jboss.solder.logging.Logger;
 import org.jboss.seam.international.status.Messages;
 
 import de.ikano.hedwig.model.Target;
@@ -19,13 +19,13 @@ import de.ikano.hedwig.model.Target;
  *
  * @author lutz
  */
-@Named("patrolHome")
+@Named
 @SessionScoped
-public class PatrolHome implements Serializable {
+public class PatrolHome extends EntityHome implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    @Inject
+    //@Inject
     Messages messages;
 	
     private Target selectedTarget = null;

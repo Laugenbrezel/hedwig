@@ -18,7 +18,7 @@ import javax.management.remote.rmi.RMIConnection;
 import javax.management.remote.rmi.RMIServer;
 import javax.persistence.EntityManager;
 
-import org.jboss.logging.Logger;
+import org.jboss.solder.logging.Logger;
 
 import de.ikano.hedwig.model.PatrolReport;
 import de.ikano.hedwig.model.Target;
