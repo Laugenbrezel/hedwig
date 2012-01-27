@@ -3,11 +3,25 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s="http://jboss.org/seam/faces"
+	xmlns:m="http://java.sun.com/jsf/composite/components/model"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"  
 	template="/WEB-INF/templates/default.xhtml">
+	
+	<ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{_targetId}"/>
+            <s:viewAction action="#{targetHome.select(_targetId)}"/>
+        </f:metadata>
+    </ui:define>
+	
+	
 	<ui:define name="content">
+		
 		<h:form id="targetForm">
+			<h:inputHidden value="#{target.id}" />
+		
 			<h2>Create a new Target, hm?</h2>
 			<p>
 				<h:messages globalOnly="true" />
@@ -17,7 +31,7 @@
 					layout="block">
 					<h:outputLabel for="name" value="Name:" />
 					<div class="input">
-						<h:inputText id="name" value="#{newTarget.name}" binding="#{name}" />
+						<h:inputText id="name" value="#{target.name}" binding="#{name}" />
 						<h:message for="name" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
@@ -26,7 +40,7 @@
 					layout="block">
 					<h:outputLabel for="objectName" value="ObjectName:" />
 					<div class="input">
-						<h:inputText id="objectName" value="#{newTarget.objectName}"
+						<h:inputText id="objectName" value="#{target.objectName}"
 							binding="#{objectName}" />
 						<h:message for="objectName" styleClass="help-inline" />
 					</div>
@@ -35,7 +49,7 @@
 					layout="block">
 					<h:outputLabel for="host" value="Host:" />
 					<div class="input">
-						<h:inputText id="host" value="#{newTarget.host}" binding="#{host}" />
+						<h:inputText id="host" value="#{target.host}" binding="#{host}" />
 						<h:message for="host" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
@@ -43,7 +57,7 @@
 					layout="block">
 					<h:outputLabel for="port" value="Port:" />
 					<div class="input">
-						<h:inputText id="port" value="#{newTarget.port}" binding="#{port}" />
+						<h:inputText id="port" value="#{target.port}" binding="#{port}" />
 						<h:message for="port" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
@@ -52,7 +66,7 @@
 					layout="block">
 					<h:outputLabel for="registryName" value="RegistryName:" />
 					<div class="input">
-						<h:inputText id="registryName" value="#{newTarget.registryName}"
+						<h:inputText id="registryName" value="#{target.registryName}"
 							binding="#{registryName}" />
 						<h:message for="registryName" styleClass="help-inline" />
 					</div>
@@ -63,7 +77,7 @@
 					layout="block">
 					<h:outputLabel for="accessMethod" value="AccessMethod:" />
 					<div class="input">
-						<h:inputText id="accessMethod" value="#{newTarget.accessMethod}" 
+						<h:inputText id="accessMethod" value="#{target.accessMethod}" 
 							binding="#{accessMethod}"/>
 						<h:message for="accessMethod" styleClass="help-inline" />
 					</div>
@@ -75,7 +89,7 @@
 								value="AccessProperty:" />
 						<div class="input">
 							<h:inputText id="accessProperty"
-								value="#{newTarget.accessProperty}" binding="#{accessProperty}"/>
+								value="#{target.accessProperty}" binding="#{accessProperty}"/>
 							<h:message for="accessProperty" styleClass="help-inline" />
 							<span class="help-block"> <strong>Note: </strong> Please
 								provide either Property or Method!
@@ -85,7 +99,7 @@
 				<div class="clearfix">
 					<h:outputLabel value="Status:"  for="status"/>
 					<div class="input">
-						<h:inputText id="status" disabled="true" value="#{newTarget.status}" />
+						<h:inputText id="status" disabled="true" value="#{target.status}" />
 						<a4j:status>
 							<f:facet name="start">
 								<h:graphicImage value="/resources/gfx/ajax_small.gif"

@@ -31,10 +31,11 @@
 					<table class="nice_box" style="display: none;">
 						<ui:repeat var="_target" value="#{targets}">
 							<tr class="nice_box">
-								<td class="nice_box #{_target.status}">#{_target.name} 
-									<h:commandButton
-										action="#{targetHome.find(_target.id)}" value="select" styleClass="btn small">
-									</h:commandButton></td>
+								<td class="nice_box #{_target.status}">
+									<h:link id="view" value="#{_target.name}" outcome="targethome" style="white-space: nowrap;">
+		                                <f:param name="id" value="#{targetHome.select(_target.id)}"/>
+		                            </h:link>
+								</td>
 							</tr>
 						</ui:repeat>
 					</table>

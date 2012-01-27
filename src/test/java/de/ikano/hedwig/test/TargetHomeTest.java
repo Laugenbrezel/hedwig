@@ -39,7 +39,7 @@ public class TargetHomeTest {
 
    @Test
    public void testRegister() throws Exception {
-      Target newTarget = targetHome.getNewTarget();
+      Target newTarget = targetHome.getTarget();
       newTarget.setName("Jane Doe");
       newTarget.setHost("localhost");
       newTarget.setPort(3333);
