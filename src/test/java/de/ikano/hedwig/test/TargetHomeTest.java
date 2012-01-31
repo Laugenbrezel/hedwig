@@ -16,7 +16,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.ikano.hedwig.controller.TargetHome;
+import de.ikano.hedwig.controller.TargetBean;
 import de.ikano.hedwig.model.Target;
 import de.ikano.hedwig.model.TargetStatus;
 import de.ikano.hedwig.util.Resources;
@@ -26,13 +26,13 @@ public class TargetHomeTest {
    @Deployment
    public static Archive<?> createTestArchive() {
       return ShrinkWrap.create(WebArchive.class, "test.war")
-            .addClasses(Target.class, TargetHome.class, TargetStatus.class, Resources.class)
+            .addClasses(Target.class, TargetBean.class, TargetStatus.class, Resources.class)
             .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
    }
 
    @Inject
-   TargetHome targetHome;
+   TargetBean targetHome;
 
    @Inject
    Logger log;
@@ -45,7 +45,7 @@ public class TargetHomeTest {
       newTarget.setPort(3333);
       newTarget.setObjectName("samplename");
       newTarget.setAccessProperty("tudelu");
-      targetHome.save();
+      targetHome.update();
       assertNotNull(newTarget.getId());
       assertNotNull(newTarget.getName());
       assertEquals(TargetStatus.UNKNOWN, newTarget.getStatus());

@@ -9,7 +9,7 @@ public class PatrolScheduler {
 	@Inject
 	private PatrolBean patrolBean;
 	
-	@Schedule(second = "*/20", minute = "*", hour = "*")
+	@Schedule(second="*/30", minute="*",hour="*", persistent=false)
 	public void startPatrol() {
 		patrolBean.startPatrolling();
 	}

@@ -1,15 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#patrolscreen.xhtml"
-  PATH="/patrolscreen.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#targethome.xhtml" PATH="/targethome.xhtml"
-  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#targethome.xhtml:0" NAME="item"
-   PATH="/targethome.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="success:#{targetHome.save}:#patrolscreen.xhtml" NAME="output"
-    PATH="/patrolscreen.xhtml" TARGET="rules:#patrolscreen.xhtml"
-    TITLE="#{targetHome.save}:success" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
-</PROCESS>
+<PROCESS model-entity="JSFProcess"/>

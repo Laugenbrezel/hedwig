@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.management.ObjectName;
@@ -19,6 +20,7 @@ import javax.management.remote.rmi.RMIServer;
 import javax.persistence.EntityManager;
 
 import org.jboss.solder.logging.Logger;
+import org.jboss.solder.logging.TypedCategory;
 
 import de.ikano.hedwig.model.PatrolReport;
 import de.ikano.hedwig.model.Target;
@@ -30,15 +32,15 @@ import de.ikano.hedwig.util.JMXUtils;
  * @author lutz
  */
 @Named("patrolBean")
-@Singleton
+@Stateless
 public class PatrolBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
     private EntityManager em;    
-//    @SessionScoped
-    private Target selectedTarget = null;
-	@Inject Logger log;
+
+	@Inject @TypedCategory(PatrolBean.class)
+    private Logger log;
 
     public List<PatrolReport> startPatrolling() {
     	log.info("Starting Patrol...");

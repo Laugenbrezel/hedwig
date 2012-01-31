@@ -10,7 +10,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 
 import org.jboss.solder.logging.Logger;
-import org.jboss.solder.logging.Category;
+import org.jboss.solder.logging.TypedCategory;
 
 import de.ikano.hedwig.model.Member;
 
@@ -23,9 +23,8 @@ import de.ikano.hedwig.model.Member;
 @Model
 public class MemberRegistration {
 
-   @Inject
-   @Category("hedwig")
-   private Logger log;
+	@Inject @TypedCategory(MemberRegistration.class)
+    private Logger log;
 
    @Inject
    private EntityManager em;

@@ -22,8 +22,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.ikano.hedwig.controller.PatrolBean;
-import de.ikano.hedwig.controller.TargetHome;
-import de.ikano.hedwig.data.TargetListProducer;
+import de.ikano.hedwig.controller.TargetBean;
 import de.ikano.hedwig.model.PatrolReport;
 import de.ikano.hedwig.model.Target;
 import de.ikano.hedwig.model.TargetStatus;
@@ -41,7 +40,7 @@ public class PatrolBeanTest {
     public static Archive<?> createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test.war").
                 addClasses(Target.class, PatrolReport.class,
-                PatrolBean.class, TargetListProducer.class, TargetHome.class, TargetStatus.class, 
+                PatrolBean.class, TargetBean.class, TargetBean.class, TargetStatus.class, 
                 Resources.class, JMXUtils.class).
                 addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml").
                 addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
