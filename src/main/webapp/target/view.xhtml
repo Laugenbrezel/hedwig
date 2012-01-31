@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s="http://jboss.org/seam/faces"
+	xmlns:m="http://java.sun.com/jsf/composite/components/model"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"  
+	template="/resources/templates/default.xhtml">
+	
+	<f:metadata>
+		<f:viewParam name="id" value="#{targetBean.id}"/>
+		<f:event type="preRenderView" listener="#{targetBean.retrieve}"/>
+	</f:metadata>
+	
+	<ui:param name="pageTitle" value="View Target"/>
+
+	<ui:define name="content">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="targetBeanName" value="Name:"/>
+			<h:outputText id="targetBeanName" value="#{targetBean.target.name}"/>
+			<h:outputText/>
+			<h:outputLabel for="targetBeanObjectName" value="ObjectName:"/>
+			<h:outputText id="targetBeanObjectName" value="#{targetBean.target.objectName}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="patrolscreen"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>
