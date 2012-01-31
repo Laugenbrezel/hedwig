@@ -97,7 +97,7 @@ public class TargetBean implements Serializable {
 		} else {
 			this.entityManager.merge(this.target);
 			targetEvent.fire(target);
-			return "view?faces-redirect=true&id=" + this.target.getId();
+			return "patrolscreen?faces-redirect=true&id=" + this.target.getId();
 		}
 		
 	}

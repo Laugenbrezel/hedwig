@@ -15,11 +15,10 @@
 		<f:event type="preRenderView" listener="#{targetBean.retrieve}"/>
 	</f:metadata>
 	
-	<ui:define name="content">
-		
+	<ui:param name="pageTitle" value="#{empty targetBean.target.id ? 'Create' : 'Update'} Target"/>
+	
+	<ui:define name="content">		
 		<h:form id="create">
-		
-			<h2>#{empty targetBean.target.id ? 'Create' : 'Update'} Target</h2>
 			<p>
 				<h:messages globalOnly="true" />
 			</p>
@@ -106,22 +105,20 @@
 					</div>					
 				</div>
 				<div class="actions">
-					<h:commandLink id="save" action="#{targetBean.update}" value="Save"
+					<h:commandButton id="save" action="#{targetBean.update}" value="Save"
 						styleClass="btn primary" />
 					<h:outputText value="&#32;" />
 							
 					<c:choose>
 						<c:when test="#{!empty targetBean.id}">
-							<h:link value="Cancel" outcome="view">
-								<f:param name="id" value="#{targetBean.id}"/>
-							</h:link>
-							<h:outputText value="&#32;" />
-							<h:commandLink value="Delete" action="#{targetBean.delete}"/>
-							<h:outputText value="&#32;" />
+							<h:commandLink value="Cancel" action="#{targetBean.cancel}" styleClass="btn"/>
+							<h:outputText value="&#32; " />
+							<h:commandLink value="Delete" action="#{targetBean.delete}" styleClass="btn danger"/>
+							<h:outputText value="&#32; " />
 						</c:when>
 						<c:otherwise>
-							<h:link value="Cancel" outcome="patrolscreen"/>
-							<h:outputText value="&#32;" />
+							<h:link value="Cancel" outcome="patrolscreen" styleClass="btn"/>
+							<h:outputText value="&#32; " />
 						</c:otherwise>
 					</c:choose>						
 						
