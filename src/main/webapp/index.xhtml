@@ -4,12 +4,12 @@
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
    template="/resources/templates/default.xhtml">
+   
+   <ui:param name="pageTitle" value="Home"/>
+   <ui:param name="menuActive" value="index"/>
+   
    <ui:define name="content">
-      <h1>Welcome to JBoss AS 7!</h1>
-
-      <p>You have successfully deployed a Java EE 6 web application
-         on JBoss AS 7.</p>
-
+   
       <h:form id="reg">
          <h2>Register (Bean Validation example)</h2>
          <p>Enforces annotation-based constraints defined on the

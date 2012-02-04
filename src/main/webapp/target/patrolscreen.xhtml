@@ -13,17 +13,18 @@
 	</f:metadata>	
 	
 	<ui:param name="pageTitle" value="JBoss AS 7 on Patrol!"/>
+	<ui:param name="menuActive" value="patrolscreen"/>
 	
 	<ui:define name="content">
-		<h:form>
+		<h:form id="actions" styleClass="form-horizontal">
 			<a4j:commandButton action="patrolscreen" value="Refresh"
-				render="targetPanel" styleClass="btn success"/>
+				render="targetPanel" styleClass="btn btn-success"/>
 			<h:outputText value="&#32; "/>
 			<h:commandLink value="Create New" action="#{targetBean.create}" styleClass="btn"/>
 		</h:form>
 
 		<a4j:outputPanel id="targetPanel" layout="block">
-			<h:form id="patrolscreen">
+			<h:form id="patrolscreen" styleClass="form-horizontal">
 				<a4j:region id="titleRegion">
 					<h2>Patrol Status</h2>
 				</a4j:region>

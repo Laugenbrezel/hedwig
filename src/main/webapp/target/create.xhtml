@@ -16,52 +16,53 @@
 	</f:metadata>
 	
 	<ui:param name="pageTitle" value="#{empty targetBean.target.id ? 'Create' : 'Update'} Target"/>
+	<ui:param name="menuActive" value="patrolscreen"/>
 	
 	<ui:define name="content">		
-		<h:form id="create">
+		<h:form id="create" styleClass="form-horizontal">
 			<p>
 				<h:messages globalOnly="true" />
 			</p>
 			<fieldset>
-				<h:panelGroup styleClass="#{name.valid ? '' : 'error'} clearfix"
+				<h:panelGroup styleClass="#{name.valid ? '' : 'error'} control-group"
 					layout="block">
 					<h:outputLabel for="name" value="Name:" />
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="name" value="#{targetBean.target.name}" binding="#{name}" />
 						<h:message for="name" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
 				<h:panelGroup
-					styleClass="#{objectName.valid ? '' : 'error'} clearfix"
+					styleClass="#{objectName.valid ? '' : 'error'} control-group"
 					layout="block">
 					<h:outputLabel for="objectName" value="ObjectName:" />
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="objectName" value="#{targetBean.target.objectName}"
 							binding="#{objectName}" />
 						<h:message for="objectName" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
-				<h:panelGroup styleClass="#{host.valid ? '' : 'error'} clearfix"
+				<h:panelGroup styleClass="#{host.valid ? '' : 'error'} control-group"
 					layout="block">
 					<h:outputLabel for="host" value="Host:" />
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="host" value="#{targetBean.target.host}" binding="#{host}" />
 						<h:message for="host" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
-				<h:panelGroup styleClass="#{port.valid ? '' : 'error'} clearfix"
+				<h:panelGroup styleClass="#{port.valid ? '' : 'error'} control-group"
 					layout="block">
 					<h:outputLabel for="port" value="Port:" />
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="port" value="#{targetBean.target.port}" binding="#{port}" />
 						<h:message for="port" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
 				<h:panelGroup
-					styleClass="#{registryName.valid ? '' : 'error'} clearfix"
+					styleClass="#{registryName.valid ? '' : 'error'} control-group"
 					layout="block">
 					<h:outputLabel for="registryName" value="RegistryName:" />
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="registryName" value="#{targetBean.target.registryName}"
 							binding="#{registryName}" />
 						<h:message for="registryName" styleClass="help-inline" />
@@ -69,21 +70,21 @@
 				</h:panelGroup>
 				<hr/>
 				<h:panelGroup
-					styleClass="#{accessMethod.valid ? '' : 'error'} clearfix"
+					styleClass="#{accessMethod.valid ? '' : 'error'} control-group"
 					layout="block">
 					<h:outputLabel for="accessMethod" value="AccessMethod:" />
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="accessMethod" value="#{targetBean.target.accessMethod}" 
 							binding="#{accessMethod}"/>
 						<h:message for="accessMethod" styleClass="help-inline" />
 					</div>
 				</h:panelGroup>
 				<h:panelGroup
-					styleClass="#{accessProperty.valid ? '' : 'error'} clearfix"
+					styleClass="#{accessProperty.valid ? '' : 'error'} control-group"
 					layout="block">
 						<h:outputLabel for="accessProperty"
 								value="AccessProperty:" />
-						<div class="input">
+						<div class="controls">
 							<h:inputText id="accessProperty"
 								value="#{targetBean.target.accessProperty}" binding="#{accessProperty}"/>
 							<h:message for="accessProperty" styleClass="help-inline" />
@@ -92,9 +93,9 @@
 							</span>
 						</div>
 				</h:panelGroup>
-				<div class="clearfix">
+				<div class="control-group">
 					<h:outputLabel value="Status:"  for="status"/>
-					<div class="input">
+					<div class="controls">
 						<h:inputText id="status" disabled="true" value="#{targetBean.target.status}" />
 						<a4j:status>
 							<f:facet name="start">
@@ -104,21 +105,17 @@
 						</a4j:status>
 					</div>					
 				</div>
-				<div class="actions">
+				<div class="form-actions">
 					<h:commandButton id="save" action="#{targetBean.update}" value="Save"
-						styleClass="btn primary" />
-					<h:outputText value="&#32;" />
+						styleClass="btn btn-primary" />
 							
 					<c:choose>
 						<c:when test="#{!empty targetBean.id}">
-							<h:commandLink value="Cancel" action="#{targetBean.cancel}" styleClass="btn"/>
-							<h:outputText value="&#32; " />
-							<h:commandLink value="Delete" action="#{targetBean.delete}" styleClass="btn danger"/>
-							<h:outputText value="&#32; " />
+							<h:commandButton value="Cancel" action="#{targetBean.cancel}" styleClass="btn"/> 
+							<h:commandButton value="Delete" action="#{targetBean.delete}" styleClass="btn btn-danger"/>
 						</c:when>
 						<c:otherwise>
 							<h:link value="Cancel" outcome="patrolscreen" styleClass="btn"/>
-							<h:outputText value="&#32; " />
 						</c:otherwise>
 					</c:choose>						
 						
