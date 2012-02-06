@@ -146,6 +146,7 @@
 			<groupId>org.richfaces.core</groupId>
 			<artifactId>richfaces-core-impl</artifactId>
 		</dependency>
+		
 
 		<!-- Needed for running tests (you may also use TestNG) -->
 		<dependency>

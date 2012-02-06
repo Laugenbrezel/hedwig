@@ -16,7 +16,7 @@
 	</f:metadata>
 	
 	<ui:param name="pageTitle" value="#{empty targetBean.target.id ? 'Create' : 'Update'} Target"/>
-	<ui:param name="menuActive" value="patrolscreen"/>
+	<ui:param name="menuActive" value="target"/>
 	
 	<ui:define name="content">		
 		<h:form id="create" styleClass="form-horizontal">
@@ -106,19 +106,13 @@
 					</div>					
 				</div>
 				<div class="form-actions">
-					<h:commandButton id="save" action="#{targetBean.update}" value="Save"
-						styleClass="btn btn-primary" />
-							
-					<c:choose>
-						<c:when test="#{!empty targetBean.id}">
-							<h:commandButton value="Cancel" action="#{targetBean.cancel}" styleClass="btn"/> 
-							<h:commandButton value="Delete" action="#{targetBean.delete}" styleClass="btn btn-danger"/>
-						</c:when>
-						<c:otherwise>
-							<h:link value="Cancel" outcome="patrolscreen" styleClass="btn"/>
-						</c:otherwise>
-					</c:choose>						
-						
+					<h:commandLink id="save" action="#{targetBean.update}" value="Save"
+						styleClass="btn btn-primary" />							
+					<h:commandLink value="Cancel" action="#{targetBean.cancel}" immediate="true" styleClass="btn"/> 
+					<h:commandLink action="#{targetBean.delete}" 
+					 	rendered="#{!empty targetBean.id}" styleClass="btn btn-danger">
+					 	<i class="icon-remove icon-white"></i> Delete
+				 	</h:commandLink>
 				</div>
 			</fieldset>
 		</h:form>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/resources/templates/default.xhtml">
+	
+	<f:metadata>
+		<f:viewParam name="page" value="#{targetBean.page}"/>
+		<f:event type="preRenderView" listener="#{targetBean.paginate}"/>
+	</f:metadata>	
+	
+	<ui:param name="pageTitle" value="JBoss AS 7 on Patrol!"/>
+	<ui:param name="menuActive" value="patrolscreen"/>
+	
+	<ui:define name="content">
+		<h:form id="actions" styleClass="form-horizontal">
+			<p>
+				<h:commandLink outcome="/patrolscreen" 
+					render="targetPanel" styleClass="btn btn-success">
+					<i class="icon-refresh icon-white"></i> Refresh
+				</h:commandLink>
+			</p>
+		</h:form>
+
+		<a4j:outputPanel id="targetPanel" layout="block">
+			<h:form id="patrolscreen" styleClass="form-horizontal">
+
+				<h:panelGroup rendered="#{empty targetBean.all}" styleClass="alert">
+					<strong>Nothing to see!</strong>No Targets configured
+				</h:panelGroup>
+				
+				<h:panelGroup rendered="#{not empty targetBean.all}" styleClass="row">
+					<div class="span6">
+						<ui:repeat var="_target" value="#{targetBean.all}">
+							<div
+								class="alert #{_target.status eq 'OK' ? 'alert-ok' : (_target.status eq 'NOT_OK' ? 'alert-error' : (_target.status eq 'UNKNOWN' ? 'alert-info' : '')) }">
+								<h:graphicImage value="/resources/gfx/one.png" style="float: left;" />
+								 <h4>
+								<h:link id="view" value="#{_target.name}" outcome="target/create" 
+									style="white-space: nowrap;">
+	                                <f:param name="id" value="#{_target.id}"/>
+	                            </h:link>
+	                            </h4>
+							</div>
+						</ui:repeat>
+					</div>
+				</h:panelGroup>
+			</h:form>
+		</a4j:outputPanel>
+	</ui:define>
+</ui:composition>

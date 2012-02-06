@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/resources/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{targetBean.page}"/>
+		<f:event type="preRenderView" listener="#{targetBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Manage Targets"/>
+	<ui:param name="menuActive" value="target"/>
+
+	<ui:define name="content">		
+		<div class="row">
+			<div class="span4">				
+				<div class="well">
+					<h:form id="search" styleClass="form-inline">
+						<fieldset>
+							<h:messages globalOnly="true"/>
+							
+							<h:panelGroup styleClass="control-group"
+								layout="block">
+								<h:outputLabel for="targetBeanSearchName" value="Name:" />
+								<div class="controls">
+									<h:inputText id="targetBeanSearchName" value="#{targetBean.search.name}" binding="#{targetBeanSearchName}" />
+								</div>
+							</h:panelGroup>
+					
+							<p>
+								<h:commandLink action="#{targetBean.search}" styleClass="btn btn-primary">
+									<i class="icon-search icon-white"></i> Search
+								</h:commandLink>	
+							</p>
+						</fieldset>
+					</h:form>
+				</div>
+				<div>
+					<h:form id="new">
+						<h:commandLink value="Create New" action="#{targetBean.create}" styleClass="btn"/>
+					</h:form>
+				</div>
+			</div>
+			<div class="span8">
+				<h:form id="result">
+					<h:dataTable id="targetBeanPageItems" styleClass="table table-bordered table-striped" value="#{targetBean.pageItems}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name"/>
+							</f:facet>
+							<h:link outcome="/target/view" value="#{_item.name}">
+								<f:param name="id" value="#{_item.id}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Host"/>
+							</f:facet>
+							<h:link outcome="/target/view" value="#{_item.host}">
+								<f:param name="id" value="#{_item.id}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ObjectName"/>
+							</f:facet>
+							<h:link outcome="/target/view" value="#{_item.objectName}">
+								<f:param name="id" value="#{_item.id}"/>
+							</h:link>
+						</h:column>
+					</h:dataTable>
+					<ui:include src="/resources/templates/paginator.xhtml">
+						<ui:param name="paginatorBean" value="#{targetBean}"/>						
+					</ui:include>
+				</h:form>
+			</div>
+		</div>
+			
+	</ui:define>
+
+</ui:composition>

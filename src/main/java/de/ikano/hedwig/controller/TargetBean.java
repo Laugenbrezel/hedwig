@@ -65,7 +65,7 @@ public class TargetBean implements Serializable {
 	public String create() {
 
 		this.conversation.begin();
-		return "create?faces-redirect=true";
+		return "/target/create?faces-redirect=true";
 	}
 	
 	public void retrieve() {
@@ -93,11 +93,11 @@ public class TargetBean implements Serializable {
 		if (this.id == null) {
 			this.entityManager.persist(this.target);
 			targetEvent.fire(target);
-			return "patrolscreen?faces-redirect=true";
+			return "/target/search?faces-redirect=true";
 		} else {
 			this.entityManager.merge(this.target);
 			targetEvent.fire(target);
-			return "patrolscreen?faces-redirect=true&id=" + this.target.getId();
+			return "/target/search?faces-redirect=true&id=" + this.target.getId();
 		}
 		
 	}
@@ -106,12 +106,12 @@ public class TargetBean implements Serializable {
 		this.conversation.end();
 		this.entityManager.remove(this.entityManager.find(Target.class,
 				getId()));
-		return "patrolscreen?faces-redirect=true";
+		return "/target/search?faces-redirect=true";
 	}
-
+	
 	public String cancel() {
 		this.conversation.end();
-		return "patrolscreen?faces-redirect=true";
+		return "/target/search?faces-redirect=true";
 	}
 
 	/*
@@ -179,7 +179,7 @@ public class TargetBean implements Serializable {
 
 		String name = this.search.getName();
 		if (name != null && !"".equals(name)) {
-			predicatesList.add(builder.like(root.<String>get("name"), '%' + name + '%'));
+			predicatesList.add(builder.like(builder.lower(root.<String>get("name")), '%' + name.toLowerCase() + '%'));
 		}
 //		String lastName = this.search.getLastName();
 //		if (lastName != null && !"".equals(lastName)) {
