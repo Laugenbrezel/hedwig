@@ -7,26 +7,20 @@
 	xmlns:rich="http://richfaces.org/rich"
 	template="/resources/templates/default.xhtml">
 	
-	<f:metadata>
-		<f:viewParam name="page" value="#{targetBean.page}"/>
-		<f:event type="preRenderView" listener="#{targetBean.paginate}"/>
-	</f:metadata>	
-	
 	<ui:param name="pageTitle" value="JBoss AS 7 on Patrol!"/>
 	<ui:param name="menuActive" value="patrolscreen"/>
 	
 	<ui:define name="content">
 		<h:form id="actions" styleClass="form-horizontal">
 			<p>
-				<h:commandLink outcome="/patrolscreen" 
-					render="targetPanel" styleClass="btn btn-success">
+				<a4j:commandLink styleClass="btn btn-success" reRender="targetPanel">
 					<i class="icon-refresh icon-white"></i> Refresh
-				</h:commandLink>
+				</a4j:commandLink> 
 			</p>
 		</h:form>
 
 		<a4j:outputPanel id="targetPanel" layout="block">
-			<h:form id="patrolscreen" styleClass="form-horizontal">
+			<h:form id="patrolscreenForm" styleClass="form-horizontal">
 
 				<h:panelGroup rendered="#{empty targetBean.all}" styleClass="alert">
 					<strong>Nothing to see!</strong>No Targets configured
@@ -47,7 +41,7 @@
 							</div>
 						</ui:repeat>
 					</div>
-				</h:panelGroup>
+				</h:panelGroup>			
 			</h:form>
 		</a4j:outputPanel>
 	</ui:define>

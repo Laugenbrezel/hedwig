@@ -46,8 +46,12 @@
 					layout="block">
 					<h:outputLabel for="host" value="Host:" />
 					<div class="controls">
-						<h:inputText id="host" value="#{targetBean.target.host}" binding="#{host}" />
-						<h:message for="host" styleClass="help-inline" />
+						<h:inputText id="host" value="#{targetBean.target.host}" binding="#{host}"
+							valueChangeListener="#{targetBean.checkHost}">
+							<f:ajax event="blur" execute="@this" render="hostMsg" immediate="true"/>
+						</h:inputText>
+						<h:message for="host" styleClass="help-inline"/>
+						<p class="help-block"><h:message for="host" styleClass="help-inline" id="hostMsg" rendered="#{host.valid}"/></p>
 					</div>
 				</h:panelGroup>
 				<h:panelGroup styleClass="#{port.valid ? '' : 'error'} control-group"
